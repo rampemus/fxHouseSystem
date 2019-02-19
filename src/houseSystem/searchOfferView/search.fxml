@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="houseSystem.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="houseSystem.searchOfferView.SearchController">
    <children>
       <Label layoutX="193.0" layoutY="10.0" text="Etsi asuntoa">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <TableView layoutX="8.0" layoutY="180.0" prefHeight="189.0" prefWidth="585.0">
+      <TableView fx:id="searchResultList" layoutX="8.0" layoutY="180.0" prefHeight="189.0" prefWidth="585.0">
         <columns>
           <TableColumn prefWidth="28.0" text="ID" />
           <TableColumn prefWidth="92.0" text="Hinta (€/kk)" />
@@ -37,7 +37,7 @@
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="50.0" text="Haku" />
-                  <TextField prefHeight="27.0" prefWidth="439.0" promptText="Kaikki kohteet">
+                  <TextField fx:id="searchBar" prefHeight="27.0" prefWidth="439.0" promptText="Kaikki kohteet">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -55,12 +55,12 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ToggleButton mnemonicParsing="false" text="Hinta">
+                  <ToggleButton fx:id="priceToggle" mnemonicParsing="false" text="Hinta">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </ToggleButton>
-                  <TextField disable="true" prefWidth="61.0" promptText="0">
+                  <TextField fx:id="minPrice" disable="true" prefWidth="61.0" promptText="0">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -70,19 +70,19 @@
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField disable="true" prefWidth="61.0" promptText="1000" />
-                  <ToggleButton mnemonicParsing="false" text="Pinta-ala">
+                  <TextField fx:id="maxPrice" disable="true" prefWidth="61.0" promptText="1000" />
+                  <ToggleButton fx:id="areaToggle" mnemonicParsing="false" text="Pinta-ala">
                      <HBox.margin>
                         <Insets left="28.0" right="5.0" />
                      </HBox.margin>
                   </ToggleButton>
-                  <TextField disable="true" prefWidth="61.0" promptText="15" />
+                  <TextField fx:id="minArea" disable="true" prefWidth="61.0" promptText="15" />
                   <Label disable="true" prefHeight="27.0" prefWidth="7.0" text="–">
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField disable="true" prefWidth="61.0" promptText="45" />
+                  <TextField fx:id="maxArea" disable="true" prefWidth="61.0" promptText="45" />
                </children>
                <padding>
                   <Insets bottom="5.0" />
@@ -90,7 +90,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="27.0" prefWidth="545.0">
                <children>
-                  <ComboBox prefHeight="27.0" prefWidth="168.0" promptText="Kuntoluokka">
+                  <ComboBox fx:id="classToggle" prefHeight="27.0" prefWidth="168.0" promptText="Kuntoluokka">
                      <opaqueInsets>
                         <Insets left="5.0" />
                      </opaqueInsets>
@@ -98,12 +98,12 @@
                         <Insets />
                      </HBox.margin>
                   </ComboBox>
-                  <ToggleButton mnemonicParsing="false" text="Rakennusvuosi">
+                  <ToggleButton fx:id="builtYearToggle" mnemonicParsing="false" text="Rakennusvuosi">
                      <HBox.margin>
                         <Insets left="17.0" />
                      </HBox.margin>
                   </ToggleButton>
-                  <TextField disable="true" prefWidth="61.0" promptText="2000">
+                  <TextField fx:id="minBuiltYear" disable="true" prefWidth="61.0" promptText="2000">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -113,12 +113,12 @@
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField disable="true" prefWidth="61.0" promptText="2010" />
+                  <TextField fx:id="maxBuiltYear" disable="true" prefWidth="61.0" promptText="2010" />
                </children>
             </HBox>
          </children>
       </VBox>
       <TitledPane animated="false" layoutX="200.0" layoutY="-104.0" text="Rajaa hakua" />
-      <Button layoutX="527.0" layoutY="369.0" mnemonicParsing="false" onAction="#backToHome" text="Peruuta" />
+      <Button layoutX="501.0" layoutY="369.0" mnemonicParsing="false" onAction="#backToHome" prefWidth="92.0" text="Peruuta" />
    </children>
 </AnchorPane>

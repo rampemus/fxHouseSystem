@@ -1,5 +1,8 @@
 package houseSystem;
 
+import houseSystem.addOfferView.AddOfferController;
+import houseSystem.addOfferView.AddOfferScene;
+import houseSystem.searchOfferView.SearchOfferScene;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -14,42 +17,39 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static Scene home;
+    public static Scene homeScene;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage stageMain) throws Exception{
 
-        Parent addOffer = FXMLLoader.load(getClass().getResource("addOffer.fxml"));
-        Scene addOfferScene = new Scene(addOffer);
-
+        AddOfferScene addOfferScene = new AddOfferScene(FXMLLoader.load(getClass().getResource("addOfferView/addOffer.fxml")));
         Button formApplication = new Button("Asuntolomake");
-        formApplication.setId("applButton");
-        formApplication.setOnAction(actionEvent -> {
-            primaryStage.setScene(addOfferScene);
+//        formApplication.setId("applButton");
+        formApplication.setOnAction( e -> {
+            stageMain.setScene(addOfferScene);
         });
 
-
-
-
-        Parent search = FXMLLoader.load(getClass().getResource("search.fxml"));
-        Scene searchScene = new Scene(search);
+        SearchOfferScene searchScene = new SearchOfferScene(FXMLLoader.load(getClass().getResource("searchOfferView/search.fxml")));
         Button searchApplication = new Button("Asuntohaku");
-        searchApplication.setId("searchButton");
-        searchApplication.setOnAction(actionEvent -> {
-            primaryStage.setScene(searchScene);
+//        searchApplication.setId("searchButton");
+        searchApplication.setOnAction( e -> {
+            stageMain.setScene(searchScene);
         });
 
-        VBox root = new VBox(10,formApplication,searchApplication);
+        Button exitButton = new Button("Poistu");
+        exitButton.setOnAction( e -> System.exit(0));
+
+        VBox root = new VBox(10,formApplication,searchApplication,exitButton);
         root.setAlignment(Pos.CENTER);
 
-        primaryStage.setTitle("Asunto järjestelmä");
-        home = new Scene(root, 600, 400);
-        primaryStage.setScene(home);
-        primaryStage.show();
+        stageMain.setTitle("Asunto järjestelmä");
+        homeScene = new Scene(root, 600, 400);
+        stageMain.setScene(homeScene);
+        stageMain.show();
 
     }
 
-    public static Scene getHomeStage() {return home;}
+    public static Scene getHomeScene() {return homeScene;}
 
     public static void main(String[] args) {
         launch(args);

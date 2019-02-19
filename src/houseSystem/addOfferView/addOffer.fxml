@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="houseSystem.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="houseSystem.addOfferView.AddOfferController">
    <children>
       <VBox layoutX="26.0" layoutY="63.0" prefHeight="325.0" prefWidth="551.0">
          <children>
@@ -27,12 +27,46 @@
             </Label>
             <HBox prefHeight="32.0" prefWidth="327.0">
                <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="91.0" text="Nimi">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField id="price" fx:id="nameField" prefHeight="27.0" prefWidth="153.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="32.0" prefWidth="327.0">
+               <children>
+                  <Label alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="91.0" text="Osoite">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField id="price" fx:id="addressField" prefHeight="27.0" prefWidth="223.0" promptText="Kadunnimi 1 A 1, 10100 Kunta">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="32.0" prefWidth="327.0">
+               <children>
                   <Label alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="91.0" text="Hinta">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <TextField id="price" fx:id="moi" prefHeight="27.0" prefWidth="153.0" promptText="0.00">
+                  <TextField id="price" fx:id="rentField" prefHeight="27.0" prefWidth="153.0" promptText="0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -57,7 +91,7 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <TextField id="area" prefHeight="27.0" prefWidth="153.0" promptText="0.00">
+                  <TextField id="area" fx:id="areaField" prefHeight="27.0" prefWidth="153.0" promptText="0.00">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -79,7 +113,7 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <TextField id="builtyear" prefHeight="27.0" prefWidth="154.0" promptText="vvvv">
+                  <TextField id="builtyear" fx:id="builtYearField" prefHeight="27.0" prefWidth="154.0" promptText="vvvv">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -96,7 +130,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <ChoiceBox prefWidth="154.0">
+                  <ChoiceBox fx:id="classField" prefWidth="154.0">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -110,7 +144,7 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="27.0" prefWidth="153.0" promptText="______@___.__">
+                  <TextField fx:id="emailField" prefHeight="27.0" prefWidth="223.0" promptText="______@___.__">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -124,7 +158,7 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <TextArea prefHeight="47.0" prefWidth="463.0">
+                  <TextArea fx:id="addInfoField" prefHeight="47.0" prefWidth="463.0">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" />
                      </HBox.margin>
@@ -138,7 +172,7 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="27.0" prefWidth="454.0">
+                  <TextField fx:id="conditionField" prefHeight="27.0" prefWidth="454.0">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin>
@@ -160,7 +194,7 @@
       </Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="364.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../eclipse-workspace/fxhello/src/main/resources/org/openjfx/home.png" />
+            <Image url="@../../../../../eclipse-workspace/fxhello/src/main/resources/org/openjfx/home.png" />
          </image>
       </ImageView>
       <Button layoutX="381.0" layoutY="218.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="133.0" text="Lisää kuva" />

@@ -6,9 +6,9 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
-public class Controller {
+public class MainController {
     @FXML
     private void backToHome(ActionEvent event){
-        ((Stage) ((Node)event.getSource()).getScene().getWindow()).setScene(Main.getHomeStage());
+        ((Stage) ((Node)event.getSource()).getScene().getWindow()).setScene(Main.getHomeScene());
     }
 }
