@@ -1,5 +1,5 @@
 package houseSystem;
 
 public enum Kuntoluokka {
-    HYVÄ, HUONO, ERINOMAINEN
+    EI_KUNTOLUOKKAA, HYVÄ, HUONO, ERINOMAINEN;
 }

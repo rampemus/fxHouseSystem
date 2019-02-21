@@ -1,12 +1,27 @@
-package houseSystem;
+package houseSystem.searchOfferView;
+
+import houseSystem.Kuntoluokka;
+import houseSystem.addOfferView.Asunto;
 
 import java.util.*;
 
 public class AsuntoGeneraattori {
-    private static final ArrayList<Asunto> asuntoLista = new ArrayList<>();
+    private static ArrayList<Asunto> asuntoLista = new ArrayList<>();
     private static int tehtäviäAsuntoja = 0;
     private static int tehtyjäAsuntoja = 0;
     private static final Object lock = new Object();
+    private static SearchController hakuAsiakas;
+
+    /**
+     * Asettaa asuntogeneraattorin asiakkaan, jolloin generaattori osaa
+     * ilmoittaa asiaakkaalle muutoksista käyttämällä
+     *      asiakas.ilmoitaDataMuutoksesta()
+     * -metodia
+     * @param asiakas
+     */
+    public static void kirjaaAsiakas(SearchController asiakas) {
+        hakuAsiakas = asiakas;
+    }
 
     public static int tehtäviäAsuntoja() {
         synchronized (lock) {
@@ -26,9 +41,16 @@ public class AsuntoGeneraattori {
         }
     }
 
+    public static void lisaaAsunto(Asunto asunto) {
+        asuntoLista.add(asunto);
+        if (tehtäviäAsuntoja() >= tehtyjäAsuntoja()) {
+            hakuAsiakas.ilmoitaDataMuutoksesta();
+        }
+    }
+
     public static Asunto luo() {
         Asunto a = new Asunto();
-        a.setKuvaTiedosto("house" + (1+new Random().nextInt(6)) + ".svg");
+        a.setKuvaTiedosto("house" + (1+new Random().nextInt(6)) + ".png");
 
         var etuetu = List.of("Villa ", "", "", "", "", "");
         var etu = List.of("Metsä", "Kallio", "Nummi", "Lehto", "Maa", "Joki");
@@ -53,6 +75,11 @@ public class AsuntoGeneraattori {
         a.setOsoite(n4+n5+" "+(1+new Random().nextInt(200)));
 
         a.setRakennusvuosi(1850+new Random().nextInt(170));
+        while ( a.getKuntoluokkaEnum().equals(Kuntoluokka.EI_KUNTOLUOKKAA) ) {
+            Kuntoluokka k = Kuntoluokka.values()[new Random().nextInt(Kuntoluokka.values().length)];
+            a.setKuntoluokka(k);
+//            System.out.println("Kuntoluokka arvottiin: " + k);
+        }
         a.setNeliömäärä(8+3*new Random().nextInt(30));
         a.setVuokra((int)(a.getNeliömäärä()*(7f+(a.getRakennusvuosi()-1850)/20f+new Random().nextDouble()*9)));
 
@@ -69,6 +96,10 @@ public class AsuntoGeneraattori {
         return a;
     }
 
+    public static void poistaKaikkiAsunnot() {
+        asuntoLista = new ArrayList<Asunto>();
+    }
+
     public static void luoAsuntoja(int kpl) {
         // keskeytetään jos vanha työ kesken
         if (tehtäviäAsuntoja() > tehtyjäAsuntoja()) return;
@@ -83,11 +114,12 @@ public class AsuntoGeneraattori {
                 synchronized (lock) {
                     Asunto a = luo();
                     asuntoLista.add(a);
-                    System.out.println("Luotu "+a);
+//                    System.out.println("Luotu "+a);
                     tehtyjäAsuntoja++;
+                    hakuAsiakas.ilmoitaDataMuutoksesta();
                 }
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(50 + new Random().nextInt(100));
                 }
                 catch(Exception e) { }
 
